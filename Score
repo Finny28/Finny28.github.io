@@ -1,0 +1,42 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      padding: 10px;
+      background-color: transparent;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+    }
+    .container {
+      background: rgba(0,0,0,0.6);
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="teams"></div>
+    <div id="score"></div>
+    <div id="sets"></div>
+  </div>
+
+  <script>
+    const url = https://script.google.com/macros/s/AKfycbwbccwv2KHwWJ9tX3QFKNGNCdTwP22A2BE5ZRdCMGcB/dev; // <-- inserisci il tuo URL qui
+    async function updateScore() {
+      const res = await fetch(url);
+      const data = await res.json();
+      document.getElementById('teams').textContent = `${data.team1} vs ${data.team2}`;
+      document.getElementById('score').textContent = `${data.score1} - ${data.score2}`;
+      document.getElementById('sets').textContent = `Set: ${data.set1} - ${data.set2}`;
+    }
+    updateScore();
+    setInterval(updateScore, 3000);
+  </script>
+</body>
+</html>
